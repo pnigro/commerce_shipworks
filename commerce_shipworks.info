@@ -1,0 +1,14 @@
+name = Commerce Shipworks
+description = "Drupal Commerce plugin for Shipworks"
+dependencies[] = entity
+dependencies[] = commerce
+dependencies[] = commerce_order
+dependencies[] = commerce_line_item
+dependencies[] = commerce_product
+dependencies[] = commerce_customer
+dependencies[] = commerce_price
+dependencies[] = commerce_tax
+dependencies[] = commerce_shipping
+dependencies[] = commerce_physical
+dependencies[] = commerce_coupon
+core = 7.x
