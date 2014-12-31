@@ -1,0 +1,31 @@
+<?php
+
+function commerce_shipworks_menu() {
+  $items['shipworks/api'] = array(
+    'page callback' => 'commerce_shipworks_endpoint',
+    'access callback' => 'commerce_shipworks_access_shipworks_api',
+    'file' => 'commerce_shipworks.inc',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function commerce_shipworks_access_shipworks_api() {
+  if (isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
+    if ($uid = user_authenticate($_REQUEST['username'], $_REQUEST['password'])) {
+      $user = user_load($uid);
+      return user_access('access shipworks api', $user);
+    }
+    return FALSE;
+  }
+  return FALSE;
+}
+
+function commerce_shipworks_permission() {
+  return array(
+    'access shipworks api' => array(
+      'title' => t('Access Shipworks API'),
+      'description' => t('Access Shipworks API'),
+    ),
+  );
+}
