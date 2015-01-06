@@ -211,6 +211,9 @@ function _WriteOrder($order_wrapper) {
       $shipping_method = $line_item_wrapper->line_item_label->value();
     }
   }
+  if (empty($shipping_method)) {
+    $shipping_method = 'None';
+  }
 
   // Notes
   $admin_notes = $order_wrapper->field_order_admin_notes->value();
