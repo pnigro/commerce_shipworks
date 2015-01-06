@@ -363,40 +363,39 @@ function _Action_UpdateStatus() {
 
   if (is_int($_REQUEST['order'])) {
     $order_id = $_REQUEST['order'];
+  
+    switch($_REQUEST['status']) {
+
+      case 'canceled':
+        $status = $_REQUEST['status'];
+        break;
+      
+      case 'pending':
+        $status = $_REQUEST['status'];
+        break;
+
+      case 'processing':
+        $status = $_REQUEST['status'];
+        break;
+
+      case 'completed':
+        $status = $_REQUEST['status'];
+        break;
+
+      default:
+        _outputError(40, "Not a valid order status.");
+    }
+
+    $order = commerce_order_load($order_id);
+  
+    // Update order status
+    commerce_order_status_update($order, $status, $skip_save = FALSE, $revision = TRUE, $log = '');
+
+    echo "<UpdateSuccess/>";
   }
   else {
     _outputError(40, "Not a valid order id.");
   }
-  
-  switch($_REQUEST['status']) {
-
-    case 'canceled':
-      $status = $_REQUEST['status'];
-      break;
-      
-    case 'pending':
-      $status = $_REQUEST['status'];
-      break;
-
-    case 'processing':
-      $status = $_REQUEST['status'];
-      break;
-
-    case 'completed':
-      $status = $_REQUEST['status'];
-      break;
-
-    default:
-      _outputError(40, "Not a valid order status.");
-    }
-
-  $order = commerce_order_load($order_id);
-  
-
-  // Update order status
-  commerce_order_status_update($order, $status, $skip_save = FALSE, $revision = TRUE, $log = '');
-
-  echo "<UpdateSuccess/>";
 }
 
 function _Action_UpdateShipment() {
