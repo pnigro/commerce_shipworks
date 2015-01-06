@@ -195,8 +195,8 @@ function _Action_GetOrders() {
 
   foreach ($result as $row) {
     // Load order
-    $order = commerce_order_load($row->order_id);
-    $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+    $order_id = $row->order_id;
+    $order_wrapper = entity_metadata_wrapper('commerce_order', $order_id);
 
     _WriteOrder($order_wrapper);
   }
@@ -406,10 +406,8 @@ function _Action_UpdateShipment() {
 
   if (is_int($_REQUEST['order'])) {
     $order_id = $_REQUEST['order'];
-  
-    $order = commerce_order_load($order_id);
  
-    $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+    $order_wrapper = entity_metadata_wrapper('commerce_order', $order_id);
 
     $tracking = $_REQUEST['tracking'];
 
