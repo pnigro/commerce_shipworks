@@ -370,19 +370,19 @@ function _Action_UpdateStatus() {
   
   switch($_REQUEST['status']) {
 
-    case: 'canceled':
+    case 'canceled':
       $status = $_REQUEST['status'];
       break;
       
-    case: 'pending':
+    case 'pending':
       $status = $_REQUEST['status'];
       break;
 
-    case: 'processing':
+    case 'processing':
       $status = $_REQUEST['status'];
       break;
 
-    case: 'completed':
+    case 'completed':
       $status = $_REQUEST['status'];
       break;
 
