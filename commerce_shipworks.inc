@@ -361,7 +361,7 @@ function _Action_UpdateStatus() {
     return;
   }
 
-  if (is_int($_REQUEST['order'])) {
+  if (is_numeric($_REQUEST['order'])) {
     $order_id = $_REQUEST['order'];
   
     switch($_REQUEST['status']) {
@@ -404,7 +404,7 @@ function _Action_UpdateShipment() {
     return;
   }
 
-  if (is_int($_REQUEST['order'])) {
+  if (is_numeric($_REQUEST['order'])) {
     $order_id = $_REQUEST['order'];
  
     $order_wrapper = entity_metadata_wrapper('commerce_order', $order_id);
