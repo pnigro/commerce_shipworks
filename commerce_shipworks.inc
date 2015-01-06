@@ -423,7 +423,7 @@ function _Action_UpdateShipment() {
     }
 
     if (!in_array($tracking_number, $tracking_numbers)) {
-      $order_wrapper->field_tracking_numbers[$delta+1]->set($tracking_number);
+      $order_wrapper->field_tracking_numbers[] = $tracking_number;
       $order_wrapper->save();
       echo "<UpdateSuccess/>";
     }
