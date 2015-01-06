@@ -407,29 +407,29 @@ function _Action_UpdateShipment() {
 
   if (is_int($_REQUEST['order'])) {
     $order_id = $_REQUEST['order'];
+  
+    $order = commerce_order_load($order_id);
+ 
+    $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
+
+    $tracking = $_REQUEST['tracking'];
+
+    $tracking_number = str_replace(' ', '', strtoupper($tracking));
+
+    $tracking_numbers = array();
+
+    foreach ($order_wrapper->field_tracking_numbers as $delta => $item) {
+      $tracking_numbers[] = $item->value();
+    }
+
+    if (!in_array($tracking_number, $tracking_numbers)) {
+      $order_wrapper->field_tracking_numbers[$delta+1]->set($tracking_number);
+      $order_wrapper->save();
+      echo "<UpdateSuccess/>";
+    }
   }
   else {
     _outputError(40, "Not a valid order id.");
-  }
-  
-  $order = commerce_order_load($order_id);
- 
-  $order_wrapper = entity_metadata_wrapper('commerce_order', $order);
-
-  $tracking = $_REQUEST['tracking'];
-
-  $tracking_number = str_replace(' ', '', strtoupper($tracking));
-
-  $tracking_numbers = array();
-
-  foreach ($order_wrapper->field_tracking_numbers as $delta => $item) {
-    $tracking_numbers[] = $item->value();
-  }
-
-  if (!in_array($tracking_number, $tracking_numbers)) {
-    $order_wrapper->field_tracking_numbers[$delta+1]->set($tracking_number);
-    $order_wrapper->save();
-    echo "<UpdateSuccess/>";
   }
 }
 
